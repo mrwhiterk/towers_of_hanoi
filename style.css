@@ -20,11 +20,19 @@ header {
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 5vw;
-  height: 300px;
+  height: 250px;
 }
 
 .blockArea {
   border: 1px solid black;
-
   text-align: center;
+  border-radius: 40%;
+}
+
+.small {
+  margin: 0 auto;
+}
+
+.medium {
+  margin: 0 auto;
 }

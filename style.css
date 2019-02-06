@@ -40,3 +40,8 @@ header {
   margin: 0 auto;
   width: 75%;
 }
+
+.large {
+  margin: 0 auto;
+  width: 100%;
+}

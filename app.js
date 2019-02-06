@@ -7,17 +7,27 @@ let status = document.querySelector('#status');
 var towerColor = "grey";
 
 var currentPiece = []
+let pieceInPlay = () => currentPiece.length > 0;
 
 function updateStatus(piece) {
   console.log('piece', piece)
-  if (piece.length > 0) {
+  if (pieceInPlay()) {
     status.innerText = `You current have a block: ${piece[0][1].className} selected`;
   } else {
     status.innerText = `You have no block selected`;
   }
 }
 
-
+function mapClassToNumber(className) {
+  switch (className) {
+    case "small":
+      return 50;
+    case "medium":
+      return 75;
+    case "large":
+      return 100
+  }
+}
 
 //initial tower coloring on left side
 for (let i = 0; i < (blockAreas.length / 3); i++) {
@@ -37,6 +47,9 @@ if (blockAreas.length === 9) {
     } else if (i <= 5) {
       blockAreas[i].style.width = "75%";
       blockAreas[i].classList.add("medium");
+    } else {
+      // blockAreas[i].style.width = "100%";
+      // blockAreas[i].classList.add("large");
     }
 
   }
@@ -65,19 +78,20 @@ if (blockAreas.length === 9) {
 
 
       //if top item is gone and no piece then go down 1 and get piece
-      if (blockAreas[towers.tower1[0]].style.backgroundColor == "white" && currentPiece.length === 0) {
+      if (blockAreas[towers.tower1[0]].style.backgroundColor == "white" && !pieceInPlay()) {
         console.log('tower 1 dropdown hit');
         towers.tower1stackOffset++;
       }
 
       var itemFoundMappingByTower = blockAreas[towers.tower1[towers.tower1stackOffset]]
 
-      if (currentPiece.length > 0) {
+      if (pieceInPlay()) {
         itemFoundMappingByTower.style.backgroundColor = towerColor;
         currentPiece.pop();
       } else {
         itemFoundMappingByTower.style.backgroundColor = "white";
         currentPiece.push([1, itemFoundMappingByTower]);
+
       }
 
       updateStatus(currentPiece)
@@ -91,17 +105,49 @@ if (blockAreas.length === 9) {
 
     blockAreas[towers.tower2[i]].addEventListener('click', function () {
 
-      var availableSpot = blockAreas[towers.tower2[len2 - 1]];
+      //check where lowest available is
+      if (blockAreas[towers.tower2[len2 - 1]].style.backgroundColor === towerColor && pieceInPlay()) {
+        console.log('tower 2 offset detector')
+        towers.tower2stackOffset++;
+      }
+
+      var availableSpot = blockAreas[towers.tower2[(len2 - 1) - towers.tower2stackOffset]];
+      console.log('avail', availableSpot);
+
+      if (pieceInPlay()) {
+        var currentPieceWidth = currentPiece[0][1].className.split(" ")[1];
+        console.log('cur piece width', mapClassToNumber(currentPieceWidth));
+
+        var downOneInTower = blockAreas[towers.tower2[(len2 - 1) - towers.tower2stackOffset + 1]];
+
+        // if there is item below
+        if (downOneInTower) {
+          var downOneTowerSize = downOneInTower.className.split(" ")[1];
+
+          console.log("down piece width", mapClassToNumber(downOneTowerSize));
+
+          if (downOneInTower && mapClassToNumber(currentPieceWidth) < mapClassToNumber(downOneTowerSize)) {
+            console.log('i can go');
+
+            availableSpot.style.backgroundColor = towerColor;
+            availableSpot.className = currentPiece[0][1].className;
+
+            currentPiece.pop();
+          }
+        } else {
+          availableSpot.style.backgroundColor = towerColor;
+          availableSpot.className = currentPiece[0][1].className;
+
+          currentPiece.pop();
+
+        }
 
 
 
-      if (currentPiece.length > 0) {
-        availableSpot.style.backgroundColor = towerColor;
-        availableSpot.className = currentPiece[0][1].className;
 
-        // console.log(availableSpot);
 
-        currentPiece.pop();
+
+
       } else {
         itemFoundMappingByTower.style.visibility = 'hidden';
         currentPiece.push([2, itemFoundMappingByTower]);
@@ -110,6 +156,10 @@ if (blockAreas.length === 9) {
       updateStatus(currentPiece)
     })
   }
+
+
+
+
 
 
 

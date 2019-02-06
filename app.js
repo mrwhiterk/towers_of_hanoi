@@ -10,7 +10,7 @@ var currentPiece = []
 let pieceInPlay = () => currentPiece.length > 0;
 
 function updateStatus(piece) {
-  console.log('piece', piece)
+  console.log('current selected piece:', piece)
   if (pieceInPlay()) {
     status.innerText = `You current have a block: ${piece[0][1].className} selected`;
   } else {
@@ -29,6 +29,15 @@ function mapClassToNumber(className) {
   }
 }
 
+function columnEmpty(column) {
+  for (let i = 0; i < column.length; i++) {
+    if (blockAreas[column[i]].style.backgroundColor !== "white") {
+      return false;
+    }
+  }
+  return true;
+}
+
 //initial tower coloring on left side
 for (let i = 0; i < (blockAreas.length / 3); i++) {
   if (i == 0) {
@@ -37,6 +46,7 @@ for (let i = 0; i < (blockAreas.length / 3); i++) {
     blockAreas[i * 3].style.backgroundColor = towerColor;
   }
 }
+
 
 if (blockAreas.length === 9) {
 
@@ -66,8 +76,21 @@ if (blockAreas.length === 9) {
     if (i % 3 === 0) towers.tower1.push(i);
   }
 
+
   towers.tower2 = towers.tower1.map(num => num + 1)
   towers.tower3 = towers.tower2.map(num => num + 1)
+
+
+  // explicitly setting background color on each tower item
+  for (let i = 0; i < towers.tower1.length; i++) {
+    blockAreas[towers.tower1[i]].style.backgroundColor = "grey";
+    blockAreas[towers.tower2[i]].style.backgroundColor = "white";
+    blockAreas[towers.tower3[i]].style.backgroundColor = "white";
+
+  }
+  // console.log(1, columnEmpty(towers.tower1))
+  // console.log(2, columnEmpty(towers.tower2))
+  // console.log(3, columnEmpty(towers.tower3))
 
   //tower 1 build functionality
   var len1 = towers.tower1.length;
@@ -75,7 +98,6 @@ if (blockAreas.length === 9) {
   for (let i = 0; i < len1; i++) {
 
     blockAreas[towers.tower1[i]].addEventListener('click', function () {
-
 
       //if top item is gone and no piece then go down 1 and get piece
       if (blockAreas[towers.tower1[0]].style.backgroundColor == "white" && !pieceInPlay()) {
@@ -105,7 +127,6 @@ if (blockAreas.length === 9) {
       updateStatus(currentPiece)
     })
   }
-
   //tower 2 build functionality - update
   var len2 = towers.tower2.length;
 
@@ -122,9 +143,14 @@ if (blockAreas.length === 9) {
       var availableSpot = blockAreas[towers.tower2[(len2 - 1) - towers.tower2stackOffset]];
       console.log('avail', availableSpot);
 
+      // need to set based on how many blocks are laid
+      var itemFoundMappingByTower = blockAreas[towers.tower2[towers.tower2.length - 1]];
+
+      console.log("itemFoundMappingByTower", itemFoundMappingByTower);
+
       if (pieceInPlay()) {
         var currentPieceWidth = currentPiece[0][1].className.split(" ")[1];
-        console.log('cur piece width', mapClassToNumber(currentPieceWidth));
+        // console.log('cur piece width', mapClassToNumber(currentPieceWidth));
 
         var downOneInTower = blockAreas[towers.tower2[(len2 - 1) - towers.tower2stackOffset + 1]];
 
@@ -150,14 +176,21 @@ if (blockAreas.length === 9) {
 
         }
 
-      } else {
-        itemFoundMappingByTower.style.visibility = 'hidden';
+      } else if (!columnEmpty(towers.tower2)) {
+
+
+        itemFoundMappingByTower.style.backgroundColor = towerColor;
         currentPiece.push([2, itemFoundMappingByTower]);
+
+        currentPiece.pop();
+
+
       }
 
       updateStatus(currentPiece)
     })
   }
+
 
   //tower 3 build functionality - update
   var len3 = towers.tower3.length;
@@ -211,21 +244,6 @@ if (blockAreas.length === 9) {
       updateStatus(currentPiece)
     })
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

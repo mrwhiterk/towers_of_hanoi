@@ -38,6 +38,15 @@ function columnEmpty(column) {
   return true;
 }
 
+function getFirstColoredBlock(column) {
+  for (let i = 0; i < column.length; i++) {
+    if (blockAreas[column[i]].style.backgroundColor === towerColor) {
+      return blockAreas[column[i]];
+    }
+  }
+  return null;
+}
+
 //initial tower coloring on left side
 for (let i = 0; i < (blockAreas.length / 3); i++) {
   if (i == 0) {
@@ -176,13 +185,28 @@ if (blockAreas.length === 9) {
 
         }
 
-      } else if (!columnEmpty(towers.tower2)) {
+      } else {
+        console.log('is empty');
 
+        //if tower is not empty
+        if (!columnEmpty(towers.tower2)) {
+          console.log('inside not empty');
 
-        itemFoundMappingByTower.style.backgroundColor = towerColor;
-        currentPiece.push([2, itemFoundMappingByTower]);
+          if (pieceInPlay()) {
+            itemFoundMappingByTower.style.backgroundColor = towerColor;
+            currentPiece.push([2, itemFoundMappingByTower]);
 
-        currentPiece.pop();
+            currentPiece.pop();
+
+          } else {
+            var bottomPiecetower2 = getFirstColoredBlock(towers.tower2);
+
+            bottomPiecetower2.style.backgroundColor = "white";
+
+            currentPiece.push([2, bottomPiecetower2]);
+
+          }
+        }
 
 
       }

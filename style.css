@@ -21,12 +21,14 @@ header {
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 5vw;
   height: 250px;
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .blockArea {
   border: 1px solid black;
   text-align: center;
-  border-radius: 40%;
 }
 
 .small {

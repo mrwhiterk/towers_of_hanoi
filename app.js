@@ -2,8 +2,13 @@ const body = document.querySelector('body');
 const gameArea = document.querySelector('.grid');
 const blockAreas = document.querySelectorAll('.blockArea');
 
-var towerColor = "green";
+var towerColor = "grey";
 
+var currentPiece = {};
+
+
+
+//initial tower coloring on left side
 for (let i = 0; i < (blockAreas.length / 3); i++) {
   if (i == 0) {
     blockAreas[i].style.backgroundColor = towerColor;
@@ -13,6 +18,7 @@ for (let i = 0; i < (blockAreas.length / 3); i++) {
 }
 
 if (blockAreas.length === 9) {
+
   for (let i = 0; i < blockAreas.length - 1; i++) {
     if (i <= 2) {
       blockAreas[i].style.width = "50%";
@@ -23,4 +29,39 @@ if (blockAreas.length === 9) {
     }
 
   }
+
+  //create 3 columns to represent towers 
+  var towers = {
+    tower1: [],
+  }
+
+  for (let i = 0; i < blockAreas.length; i++) {
+    if (i % 3 === 0) towers.tower1.push(i);
+  }
+
+  towers.tower2 = towers.tower1.map(num => num + 1)
+  towers.tower3 = towers.tower2.map(num => num + 1)
+
+  for (let i = 0; i < towers.tower1.length; i++) {
+
+    blockAreas[towers.tower1[i]].addEventListener('click', function () {
+
+      var itemFoundMappingByTower = blockAreas[towers.tower1[0]]
+
+      itemFoundMappingByTower.style.visibility = 'hidden';
+
+      currentPiece.piece = itemFoundMappingByTower;
+    })
+  }
+
+  console.log(currentPiece);
+
+
+
+
+
+
+
+
+
 }

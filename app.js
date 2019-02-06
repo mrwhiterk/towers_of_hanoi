@@ -63,7 +63,14 @@ if (blockAreas.length === 9) {
 
     blockAreas[towers.tower1[i]].addEventListener('click', function () {
 
-      var itemFoundMappingByTower = blockAreas[towers.tower1[0]]
+
+      //if top item is gone and no piece then go down 1 and get piece
+      if (blockAreas[towers.tower1[0]].style.backgroundColor == "white" && currentPiece.length === 0) {
+        console.log('tower 1 dropdown hit');
+        towers.tower1stackOffset++;
+      }
+
+      var itemFoundMappingByTower = blockAreas[towers.tower1[towers.tower1stackOffset]]
 
       if (currentPiece.length > 0) {
         itemFoundMappingByTower.style.backgroundColor = towerColor;
@@ -92,7 +99,7 @@ if (blockAreas.length === 9) {
         availableSpot.style.backgroundColor = towerColor;
         availableSpot.className = currentPiece[0][1].className;
 
-        console.log(availableSpot);
+        // console.log(availableSpot);
 
         currentPiece.pop();
       } else {

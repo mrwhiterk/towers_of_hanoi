@@ -6,7 +6,16 @@ let status = document.querySelector('#status');
 
 var towerColor = "grey";
 
-var currentPiece;
+var currentPiece = []
+
+function updateStatus(piece) {
+  console.log('piece', piece)
+  if (piece.length > 0) {
+    status.innerText = `You current have a block: ${piece[0][1].className} selected`;
+  } else {
+    status.innerText = `You have no block selected`;
+  }
+}
 
 
 
@@ -56,28 +65,48 @@ if (blockAreas.length === 9) {
 
       var itemFoundMappingByTower = blockAreas[towers.tower1[0]]
 
-      if (currentPiece) {
-        itemFoundMappingByTower.style.visibility = 'visible';
-        currentPiece = "";
+      if (currentPiece.length > 0) {
+        itemFoundMappingByTower.style.backgroundColor = towerColor;
+        currentPiece.pop();
       } else {
-        itemFoundMappingByTower.style.visibility = 'hidden';
-        currentPiece = itemFoundMappingByTower;
+        itemFoundMappingByTower.style.backgroundColor = "white";
+        currentPiece.push([1, itemFoundMappingByTower]);
       }
 
       updateStatus(currentPiece)
+    })
+  }
+
+  //tower 2 build functionality - update
+  var len2 = towers.tower2.length;
+
+  for (let i = 0; i < len2; i++) {
+
+    blockAreas[towers.tower2[i]].addEventListener('click', function () {
+
+      var availableSpot = blockAreas[towers.tower2[len2 - 1]];
 
 
+
+      if (currentPiece.length > 0) {
+        availableSpot.style.backgroundColor = towerColor;
+        availableSpot.className = currentPiece[0][1].className;
+
+        console.log(availableSpot);
+
+        currentPiece.pop();
+      } else {
+        itemFoundMappingByTower.style.visibility = 'hidden';
+        currentPiece.push([2, itemFoundMappingByTower]);
+      }
+
+      updateStatus(currentPiece)
     })
   }
 
 
-  function updateStatus(piece) {
-    if (piece) {
-      status.innerText = `You current have a block: ${piece.className} selected`;
-    } else {
-      status.innerText = `You have no block selected`;
-    }
-  }
+
+
 
 
 

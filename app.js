@@ -29,6 +29,14 @@ function mapClassToNumber(className) {
   }
 }
 
+// function makeDotted() {
+//   blockAreas.forEach(item => {
+//     if (item.style.backgroundColor == "white") {
+//       item.style.border = "1px dashed #000"
+//     }
+//   })
+// }
+
 function columnEmpty(column) {
   for (let i = 0; i < column.length; i++) {
     if (blockAreas[column[i]].style.backgroundColor !== "white") {
@@ -45,6 +53,14 @@ function getFirstColoredBlock(column) {
     }
   }
   return null;
+}
+
+function getLastEmptyBlock(column) {
+  for (let i = 0; i < column.length; i++) {
+    if (blockAreas[column[i]].style.backgroundColor === towerColor) {
+      return blockAreas[column[i - 1]];
+    }
+  }
 }
 
 //initial tower coloring on left side
@@ -97,9 +113,6 @@ if (blockAreas.length === 9) {
     blockAreas[towers.tower3[i]].style.backgroundColor = "white";
 
   }
-  // console.log(1, columnEmpty(towers.tower1))
-  // console.log(2, columnEmpty(towers.tower2))
-  // console.log(3, columnEmpty(towers.tower3))
 
   //tower 1 build functionality
   var len1 = towers.tower1.length;
@@ -115,17 +128,49 @@ if (blockAreas.length === 9) {
         towers.tower1stackOffset = 1;
       }
 
-      // test code 
+      // ### need to refactor this and one above
       if (blockAreas[towers.tower1[1]].style.backgroundColor == "white" && !pieceInPlay()) {
         console.log('tower 1 dropdown hit');
 
         towers.tower1stackOffset = 2;
       }
 
+      // ### need to refactor this and one above
+      if (blockAreas[towers.tower1[2]].style.backgroundColor == "white" && !pieceInPlay()) {
+        console.log('tower 1 dropdown hit');
+
+        towers.tower1stackOffset = 3;
+      }
+
+      // if current piece is coming from tower 2
+      if (pieceInPlay()) {
+        if (currentPiece[0][0] == 2) {
+          towers.tower1stackOffset--;
+        }
+      }
+
       var itemFoundMappingByTower = blockAreas[towers.tower1[towers.tower1stackOffset]]
 
+
       if (pieceInPlay()) {
+
+        //experimental 
+
+        console.log('item ***', itemFoundMappingByTower);
+
+        //experimental 
+        // var lastEmptySpace = getLastEmptyBlock(towers.tower1);
+        // itemFoundMappingByTower = lastEmptySpace;
+
+
+        itemFoundMappingByTower.className = currentPiece[0][1].className;
+
+        var currentPieceClass = currentPiece[0][1].className.split(' ')[1];
+
+        itemFoundMappingByTower.style.width = mapClassToNumber(currentPieceClass) + "%";
+
         itemFoundMappingByTower.style.backgroundColor = towerColor;
+
         currentPiece.pop();
       } else {
         itemFoundMappingByTower.style.backgroundColor = "white";
@@ -133,7 +178,8 @@ if (blockAreas.length === 9) {
 
       }
 
-      updateStatus(currentPiece)
+      updateStatus(currentPiece);
+      // makeDotted();
     })
   }
   //tower 2 build functionality - update
@@ -212,6 +258,8 @@ if (blockAreas.length === 9) {
       }
 
       updateStatus(currentPiece)
+      // makeDotted();
+
     })
   }
 
@@ -265,10 +313,14 @@ if (blockAreas.length === 9) {
         currentPiece.push([3, itemFoundMappingByTower]);
       }
 
-      updateStatus(currentPiece)
+      updateStatus(currentPiece);
+      // makeDotted();
+
     })
   }
 
 
 
 }
+
+// makeDotted();

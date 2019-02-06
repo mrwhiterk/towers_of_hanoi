@@ -29,14 +29,6 @@ function mapClassToNumber(className) {
   }
 }
 
-// function makeDotted() {
-//   blockAreas.forEach(item => {
-//     if (item.style.backgroundColor == "white") {
-//       item.style.border = "1px dashed #000"
-//     }
-//   })
-// }
-
 function columnEmpty(column) {
   for (let i = 0; i < column.length; i++) {
     if (blockAreas[column[i]].style.backgroundColor !== "white") {
@@ -82,9 +74,6 @@ if (blockAreas.length === 9) {
     } else if (i <= 5) {
       blockAreas[i].style.width = "75%";
       blockAreas[i].classList.add("medium");
-    } else {
-      // blockAreas[i].style.width = "100%";
-      // blockAreas[i].classList.add("large");
     }
 
   }
@@ -144,24 +133,22 @@ if (blockAreas.length === 9) {
 
       // if current piece is coming from tower 2
       if (pieceInPlay()) {
-        if (currentPiece[0][0] == 2) {
+        console.log(4, currentPiece[0][1]);
+        console.log(5, blockAreas[towers.tower1[2]]);
+        console.log(6, currentPiece[0][1] == blockAreas[towers.tower1[2]]);
+        console.log(7, currentPiece[0][0] == 2)
+
+        if (currentPiece[0][0] == 2 && currentPiece[0][1] == blockAreas[towers.tower1[2]]) {
+          console.log('last hit')
           towers.tower1stackOffset--;
         }
       }
 
       var itemFoundMappingByTower = blockAreas[towers.tower1[towers.tower1stackOffset]]
 
-
       if (pieceInPlay()) {
 
-        //experimental 
-
-        console.log('item ***', itemFoundMappingByTower);
-
-        //experimental 
-        // var lastEmptySpace = getLastEmptyBlock(towers.tower1);
-        // itemFoundMappingByTower = lastEmptySpace;
-
+        console.log('item found by mapping tower: ', itemFoundMappingByTower);
 
         itemFoundMappingByTower.className = currentPiece[0][1].className;
 
@@ -175,7 +162,6 @@ if (blockAreas.length === 9) {
       } else {
         itemFoundMappingByTower.style.backgroundColor = "white";
         currentPiece.push([1, itemFoundMappingByTower]);
-
       }
 
       updateStatus(currentPiece);
@@ -205,7 +191,6 @@ if (blockAreas.length === 9) {
 
       if (pieceInPlay()) {
         var currentPieceWidth = currentPiece[0][1].className.split(" ")[1];
-        // console.log('cur piece width', mapClassToNumber(currentPieceWidth));
 
         var downOneInTower = blockAreas[towers.tower2[(len2 - 1) - towers.tower2stackOffset + 1]];
 

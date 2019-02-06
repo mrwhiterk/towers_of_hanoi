@@ -2,9 +2,11 @@ const body = document.querySelector('body');
 const gameArea = document.querySelector('.grid');
 const blockAreas = document.querySelectorAll('.blockArea');
 
+let status = document.querySelector('#status');
+
 var towerColor = "grey";
 
-var currentPiece = {};
+var currentPiece;
 
 
 
@@ -33,6 +35,9 @@ if (blockAreas.length === 9) {
   //create 3 columns to represent towers 
   var towers = {
     tower1: [],
+    tower1stackOffset: 0,
+    tower2stackOffset: 0,
+    tower3stackOffset: 0,
   }
 
   for (let i = 0; i < blockAreas.length; i++) {
@@ -42,19 +47,38 @@ if (blockAreas.length === 9) {
   towers.tower2 = towers.tower1.map(num => num + 1)
   towers.tower3 = towers.tower2.map(num => num + 1)
 
-  for (let i = 0; i < towers.tower1.length; i++) {
+  //tower 1 build functionality
+  var len1 = towers.tower1.length;
+
+  for (let i = 0; i < len1; i++) {
 
     blockAreas[towers.tower1[i]].addEventListener('click', function () {
 
       var itemFoundMappingByTower = blockAreas[towers.tower1[0]]
 
-      itemFoundMappingByTower.style.visibility = 'hidden';
+      if (currentPiece) {
+        itemFoundMappingByTower.style.visibility = 'visible';
+        currentPiece = "";
+      } else {
+        itemFoundMappingByTower.style.visibility = 'hidden';
+        currentPiece = itemFoundMappingByTower;
+      }
 
-      currentPiece.piece = itemFoundMappingByTower;
+      updateStatus(currentPiece)
+
+
     })
   }
 
-  console.log(currentPiece);
+
+  function updateStatus(piece) {
+    if (piece) {
+      status.innerText = `You current have a block: ${piece.className} selected`;
+    } else {
+      status.innerText = `You have no block selected`;
+    }
+  }
+
 
 
 

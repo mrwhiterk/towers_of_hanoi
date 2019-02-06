@@ -133,12 +133,8 @@ if (blockAreas.length === 9) {
 
       // if current piece is coming from tower 2
       if (pieceInPlay()) {
-        console.log(4, currentPiece[0][1]);
-        console.log(5, blockAreas[towers.tower1[2]]);
-        console.log(6, currentPiece[0][1] == blockAreas[towers.tower1[2]]);
-        console.log(7, currentPiece[0][0] == 2)
 
-        if (currentPiece[0][0] == 2 && currentPiece[0][1] == blockAreas[towers.tower1[2]]) {
+        if (currentPiece[0][0] == 2 && towers.tower1stackOffset === 2) {
           console.log('last hit')
           towers.tower1stackOffset--;
         }

@@ -80,7 +80,15 @@ if (blockAreas.length === 9) {
       //if top item is gone and no piece then go down 1 and get piece
       if (blockAreas[towers.tower1[0]].style.backgroundColor == "white" && !pieceInPlay()) {
         console.log('tower 1 dropdown hit');
-        towers.tower1stackOffset++;
+
+        towers.tower1stackOffset = 1;
+      }
+
+      // test code 
+      if (blockAreas[towers.tower1[1]].style.backgroundColor == "white" && !pieceInPlay()) {
+        console.log('tower 1 dropdown hit');
+
+        towers.tower1stackOffset = 2;
       }
 
       var itemFoundMappingByTower = blockAreas[towers.tower1[towers.tower1stackOffset]]
@@ -142,15 +150,62 @@ if (blockAreas.length === 9) {
 
         }
 
-
-
-
-
-
-
       } else {
         itemFoundMappingByTower.style.visibility = 'hidden';
         currentPiece.push([2, itemFoundMappingByTower]);
+      }
+
+      updateStatus(currentPiece)
+    })
+  }
+
+  //tower 3 build functionality - update
+  var len3 = towers.tower3.length;
+
+  for (let i = 0; i < len3; i++) {
+
+    blockAreas[towers.tower3[i]].addEventListener('click', function () {
+
+      //check where lowest available is
+      if (blockAreas[towers.tower3[len3 - 1]].style.backgroundColor === towerColor && pieceInPlay()) {
+        console.log('tower 3 offset detector')
+        towers.tower3stackOffset++;
+      }
+
+      var availableSpot = blockAreas[towers.tower3[(len3 - 1) - towers.tower3stackOffset]];
+      console.log('avail', availableSpot);
+
+      if (pieceInPlay()) {
+        var currentPieceWidth = currentPiece[0][1].className.split(" ")[1];
+        console.log('cur piece width', mapClassToNumber(currentPieceWidth));
+
+        var downOneInTower = blockAreas[towers.tower3[(len3 - 1) - towers.tower3stackOffset + 1]];
+
+        // if there is item below
+        if (downOneInTower) {
+          var downOneTowerSize = downOneInTower.className.split(" ")[1];
+
+          console.log("down piece width", mapClassToNumber(downOneTowerSize));
+
+          if (downOneInTower && mapClassToNumber(currentPieceWidth) < mapClassToNumber(downOneTowerSize)) {
+            console.log('i can go');
+
+            availableSpot.style.backgroundColor = towerColor;
+            availableSpot.className = currentPiece[0][1].className;
+
+            currentPiece.pop();
+          }
+        } else {
+          availableSpot.style.backgroundColor = towerColor;
+          availableSpot.className = currentPiece[0][1].className;
+
+          currentPiece.pop();
+
+        }
+
+      } else {
+        itemFoundMappingByTower.style.visibility = 'hidden';
+        currentPiece.push([3, itemFoundMappingByTower]);
       }
 
       updateStatus(currentPiece)

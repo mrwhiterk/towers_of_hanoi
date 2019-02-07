@@ -47,7 +47,8 @@ body {
   background-color: white;
   display: inline-block;
   width: 300px;
-  padding: 10px;
+  padding: 20px;
+  margin: 20px;
 
 }
 
@@ -59,4 +60,10 @@ body {
 #status {
   display: inline-block;
   width: 100%;
+}
+
+#startBtn {
+  margin: 10px;
+  padding: 10px;
+  background-color: lightblue;
 }

@@ -3,9 +3,10 @@ const tower1 = document.querySelector("#tower1");
 const tower2 = document.querySelector("#tower2");
 const tower3 = document.querySelector("#tower3");
 let status = document.querySelector("#status");
+const startBtn = document.querySelector("#startBtn");
+let blockSelect = document.querySelector("#blockSelect");
 const boxWidth = 120;
 let currentPiece;
-const numBlocks = 3;
 
 const getLastItem = list => list.childNodes[(list.childNodes.length - 1)];
 
@@ -21,43 +22,62 @@ const display = () => {
   }
 }
 
-// create 3 blocks
-for (let i = numBlocks; i > 0; i--) {
-  let block = document.createElement('div');
-  block.className = "block";
-  block.style.width = (boxWidth * (i / 3) + "px");
-  tower1.appendChild(block);
+function clearBoard(tower) {
+  while (tower.firstChild) {
+    tower.removeChild(tower.firstChild);
+  }
 }
 
-function didPlayerWin() {
-  return tower1.childNodes.length === 0 && tower2.childNodes.length === 0;
-}
+var numOfBlocks = blockSelect.options[blockSelect.selectedIndex].value;
 
+startBtn.addEventListener('click', () => startGame());
 
-function createMovement(tower) {
-  if (!currentPiece) {
-    currentPiece = getLastItem(tower);
-  } else if (currentPiece && tower.childNodes.length === 0) {
+function startGame() {
+  clearBoard(tower1);
+  clearBoard(tower2);
+  clearBoard(tower3);
+  currentPiece = null;
 
-    tower.appendChild(currentPiece);
-    currentPiece = null;
-  } else if (currentPiece) {
+  var numOfBlocksSelected = blockSelect.options[blockSelect.selectedIndex].value;
 
-    var currentPieceWidth = parseInt(currentPiece.style.width);
-    var topPieceWidth = parseInt(getLastItem(tower).style.width);
+  // create 3 blocks
+  for (let i = numOfBlocksSelected; i > 0; i--) {
+    let block = document.createElement('div');
+    block.className = "block";
+    block.style.width = (boxWidth * (i / 3) + "px");
+    tower1.appendChild(block);
+  }
 
-    if (currentPieceWidth <= topPieceWidth) {
+  function didPlayerWin() {
+    return tower1.childNodes.length === 0 && tower2.childNodes.length === 0;
+  }
+
+  function createMovement(tower) {
+    if (!currentPiece) {
+      currentPiece = getLastItem(tower);
+    } else if (currentPiece && tower.childNodes.length === 0) {
+
       tower.appendChild(currentPiece);
       currentPiece = null;
+    } else if (currentPiece) {
+
+      var currentPieceWidth = parseInt(currentPiece.style.width);
+      var topPieceWidth = parseInt(getLastItem(tower).style.width);
+
+      if (currentPieceWidth <= topPieceWidth) {
+        tower.appendChild(currentPiece);
+        currentPiece = null;
+      }
+    }
+    display();
+
+    if (didPlayerWin()) {
+      setTimeout(() => alert("Congrats, you win!"), 500);
     }
   }
-  display();
 
-  if (didPlayerWin()) {
-    alert("Congrats, you win!");
-  }
+  tower1.addEventListener('click', (evt) => createMovement(evt.target));
+  tower2.addEventListener('click', (evt) => createMovement(evt.target));
+  tower3.addEventListener('click', (evt) => createMovement(evt.target));
+
 }
-
-tower1.addEventListener('click', (evt) => createMovement(evt.target));
-tower2.addEventListener('click', (evt) => createMovement(evt.target));
-tower3.addEventListener('click', (evt) => createMovement(evt.target));

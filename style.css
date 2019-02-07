@@ -1,3 +1,8 @@
+header {
+  text-align: center;
+}
+
+
 .grid {
   min-height: 400px;
   max-width: 640px;
@@ -12,11 +17,14 @@
 .grid>div {
   background-color: pink;
   min-width: 30%;
+  height: 500px;
   display: flex;
   flex-direction: column-reverse;
 }
 
 .block {
-  background-color: red;
+  background-color: grey;
   height: 50px;
+  border: 1px solid black;
+  margin: 0 auto;
 }

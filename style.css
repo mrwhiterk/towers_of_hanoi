@@ -1,5 +1,11 @@
 header {
   text-align: center;
+
+}
+
+header h1 {
+  font-family: 'Anton', sans-serif;
+  font-size: 2rem;
 }
 
 body {
@@ -21,7 +27,7 @@ body {
 .grid>div {
   background-color: rgb(242, 242, 242);
   min-width: 30%;
-  height: 450px;
+  height: 420px;
   display: flex;
   flex-direction: column-reverse;
 }
@@ -31,5 +37,26 @@ body {
   height: 30px;
   border: 1px solid black;
   margin: 0 auto;
-  background-image: url("assets/stone_wall.jpg");
+  background-color: brown;
+  /* background-image: url("assets/stone_wall.jpg"); */
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  display: inline-block;
+  width: 300px;
+  padding: 10px;
+
+}
+
+.label {
+  display: inline-block;
+  width: 100%;
+}
+
+#status {
+  display: inline-block;
+  width: 100%;
 }

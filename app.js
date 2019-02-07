@@ -29,11 +29,9 @@ const display = () => {
 
 // create 3 blocks
 for (let i = numBlocks; i > 0; i--) {
-  var block = document.createElement('div');
+  let block = document.createElement('div');
   block.className = "block";
-
   block.style.width = (boxWidth * (i / 3) + "px");
-
   tower1.appendChild(block);
 }
 
@@ -41,7 +39,6 @@ for (let i = numBlocks; i > 0; i--) {
 function createMovement(tower) {
   if (!currentPiece) {
     currentPiece = getLastItem(tower);
-    display();
   } else if (currentPiece && tower.childNodes.length === 0) {
 
     tower.appendChild(currentPiece);
@@ -56,10 +53,9 @@ function createMovement(tower) {
       currentPiece = null;
     }
   }
+  display();
 }
 
 tower1.addEventListener('click', (evt) => createMovement(evt.target));
 tower2.addEventListener('click', (evt) => createMovement(evt.target));
 tower3.addEventListener('click', (evt) => createMovement(evt.target));
-
-display();

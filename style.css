@@ -2,6 +2,10 @@ header {
   text-align: center;
 }
 
+body {
+  text-align: center;
+}
+
 
 .grid {
   min-height: 400px;

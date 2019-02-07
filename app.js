@@ -24,63 +24,24 @@ function getLastItem(list) {
   return list.childNodes[(list.childNodes.length - 1)]
 }
 
-tower1.addEventListener('click', function (evt) {
-
+function createMovement(tower) {
   if (!currentPiece) {
-    currentPiece = getLastItem(evt.target);
-  } else if (currentPiece && evt.target.childNodes.length == 0) {
+    currentPiece = getLastItem(tower);
+  } else if (currentPiece && tower.childNodes.length === 0) {
 
-    evt.target.appendChild(currentPiece);
+    tower.appendChild(currentPiece);
     currentPiece = null;
   } else if (currentPiece) {
 
     var currentPieceWidth = parseInt(currentPiece.style.width);
-    var topPieceWidth = parseInt(getLastItem(evt.target).style.width);
+    var topPieceWidth = parseInt(getLastItem(tower).style.width);
     if (currentPieceWidth <= topPieceWidth) {
-      evt.target.appendChild(currentPiece);
+      tower.appendChild(currentPiece);
       currentPiece = null;
     }
   }
-  console.log('current piece', currentPiece);
+}
 
-})
-
-tower2.addEventListener('click', function (evt) {
-
-  if (!currentPiece) {
-    currentPiece = evt.target.childNodes[(evt.target.childNodes.length - 1)];
-  } else if (currentPiece && evt.target.childNodes.length == 0) {
-
-    evt.target.appendChild(currentPiece);
-    currentPiece = null;
-  } else if (currentPiece) {
-
-    var currentPieceWidth = parseInt(currentPiece.style.width);
-    var topPieceWidth = parseInt(getLastItem(evt.target).style.width);
-    if (currentPieceWidth <= topPieceWidth) {
-      evt.target.appendChild(currentPiece);
-      currentPiece = null;
-    }
-  }
-  console.log('current piece', currentPiece);
-})
-
-tower3.addEventListener('click', function (evt) {
-
-  if (!currentPiece) {
-    currentPiece = evt.target.childNodes[(evt.target.childNodes.length - 1)];
-  } else if (currentPiece && evt.target.childNodes.length == 0) {
-
-    evt.target.appendChild(currentPiece);
-    currentPiece = null;
-  } else if (currentPiece) {
-
-    var currentPieceWidth = parseInt(currentPiece.style.width);
-    var topPieceWidth = parseInt(getLastItem(evt.target).style.width);
-    if (currentPieceWidth <= topPieceWidth) {
-      evt.target.appendChild(currentPiece);
-      currentPiece = null;
-    }
-  }
-  console.log('current piece', currentPiece);
-})
+tower1.addEventListener('click', (evt) => createMovement(evt.target));
+tower2.addEventListener('click', (evt) => createMovement(evt.target));
+tower3.addEventListener('click', (evt) => createMovement(evt.target));

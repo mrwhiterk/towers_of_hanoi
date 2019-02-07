@@ -4,13 +4,13 @@ header {
 
 body {
   text-align: center;
+  background-color: lightblue;
+
 }
 
 
 .grid {
-  min-height: 400px;
   width: 900px;
-  border: 1px solid black;
   margin: 15px auto;
   display: flex;
   justify-content: space-between;
@@ -21,7 +21,7 @@ body {
 .grid>div {
   background-color: rgb(242, 242, 242);
   min-width: 30%;
-  height: 500px;
+  height: 450px;
   display: flex;
   flex-direction: column-reverse;
 }
@@ -31,4 +31,5 @@ body {
   height: 30px;
   border: 1px solid black;
   margin: 0 auto;
+  background-image: url("assets/stone_wall.jpg");
 }

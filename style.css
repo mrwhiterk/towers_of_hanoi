@@ -10,7 +10,7 @@ header h1 {
 
 body {
   text-align: center;
-  background-color: lightblue;
+  background-color: orange;
 
 }
 
@@ -38,6 +38,7 @@ body {
   border: 1px solid black;
   margin: 0 auto;
   background-color: brown;
+  pointer-events: none;
   /* background-image: url("assets/stone_wall.jpg"); */
 }
 
@@ -65,5 +66,5 @@ body {
 #startBtn {
   margin: 10px;
   padding: 10px;
-  background-color: lightblue;
+  background-color: orange;
 }

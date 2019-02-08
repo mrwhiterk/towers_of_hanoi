@@ -40,10 +40,19 @@ var numOfBlocks = blockSelect.options[blockSelect.selectedIndex].value;
 
 startBtn.addEventListener('click', () => startGame());
 
+function gameStartEndSwitch() {}
+
 function startGame() {
   grid.style.visibility = "visible";
   detail_col_two.style.visibility = "visible";
   detail_col_three.style.visibility = "visible";
+  if (startBtn.textContent == "End Game") {
+    startBtn.textContent = "Start Game";
+    grid.style.visibility = "hidden";
+    return;
+  } else {
+    startBtn.textContent = "End Game";
+  }
 
   clearBoard(tower1);
   clearBoard(tower2);

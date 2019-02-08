@@ -39,6 +39,7 @@ var numOfBlocks = blockSelect.options[blockSelect.selectedIndex].value;
 startBtn.addEventListener('click', () => startGame());
 
 function startGame() {
+  grid.style.visibility = "visible";
   clearBoard(tower1);
   clearBoard(tower2);
   clearBoard(tower3);

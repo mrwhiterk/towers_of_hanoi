@@ -17,4 +17,4 @@ In my game area, I use 3 divs inside a css grid container. I also have a flexbox
 
 # Technology used
 
-HTML, CSS, Vanilla Javascript
+HTML, CSS, Javascript

@@ -40,6 +40,7 @@ body {
   height: 420px;
   display: flex;
   flex-direction: column-reverse;
+  border-radius: 10px;
 }
 
 .block {
@@ -62,6 +63,7 @@ body {
   width: 900px;
   padding: 5px;
   margin: 5px auto;
+  border-radius: 10px;
 }
 
 .label {

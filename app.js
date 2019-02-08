@@ -44,6 +44,7 @@ function startGame() {
   clearBoard(tower3);
   currentPiece = null;
   counter = 0;
+  display()
 
   var numOfBlocksSelected = blockSelect.options[blockSelect.selectedIndex].value;
 

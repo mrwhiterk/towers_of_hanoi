@@ -68,6 +68,8 @@ body {
   padding: 5px;
   margin: 5px auto;
   border-radius: 10px;
+  font-size: 1.2rem;
+
 }
 
 .label {
@@ -97,10 +99,20 @@ body {
 
 
 #blockSelect {
-  transform: scale(1.5);
+  font-size: 1.2rem;
+  display: inline-block;
+
 }
 
 #status {
   display: inline-block;
   width: 250px;
+}
+
+.detail_col_two {
+  visibility: hidden;
+}
+
+.detail_col_three {
+  visibility: hidden;
 }

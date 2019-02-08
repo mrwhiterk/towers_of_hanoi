@@ -9,6 +9,8 @@ const boxWidth = 120;
 let currentPiece;
 var counter = 0;
 var counterDashboard = document.querySelector('.counter');
+var detail_col_two = document.querySelector('.detail_col_two');
+var detail_col_three = document.querySelector('.detail_col_three');
 
 
 const getLastItem = list => list.childNodes[(list.childNodes.length - 1)];
@@ -40,6 +42,9 @@ startBtn.addEventListener('click', () => startGame());
 
 function startGame() {
   grid.style.visibility = "visible";
+  detail_col_two.style.visibility = "visible";
+  detail_col_three.style.visibility = "visible";
+
   clearBoard(tower1);
   clearBoard(tower2);
   clearBoard(tower3);

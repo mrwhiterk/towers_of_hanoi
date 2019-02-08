@@ -10,13 +10,11 @@ header {
   font-family: 'Quattrocento Sans', sans-serif;
   font-size: 1.2rem;
   /* font-family: 'Orbitron', sans-serif; */
-
 }
 
 header h1 {
   /* font-family: 'Anton', sans-serif; */
   font-family: 'Orbitron', sans-serif;
-
   font-size: 2.3rem;
 }
 
@@ -25,7 +23,6 @@ header h1 {
 body {
   text-align: center;
   background-color: orange;
-
 }
 
 
@@ -35,7 +32,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-
 }
 
 .grid>div {
@@ -66,7 +62,6 @@ body {
   width: 900px;
   padding: 5px;
   margin: 5px auto;
-
 }
 
 .label {

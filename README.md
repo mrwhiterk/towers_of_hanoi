@@ -10,7 +10,3 @@ The objective of the game is to move all the blocks from the left most column to
 
 1. You can only move one block at a time.
 2. You cannot place a larger block on a smaller block.
-
-# Known Issues in work
-
-1. When you finish game and select 'New Game' again, you have to click it twice for it to properly run.

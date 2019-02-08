@@ -7,6 +7,9 @@ const startBtn = document.querySelector("#startBtn");
 let blockSelect = document.querySelector("#blockSelect");
 const boxWidth = 120;
 let currentPiece;
+var counter = 0;
+var counterDashboard = document.querySelector('.counter');
+
 
 const getLastItem = list => list.childNodes[(list.childNodes.length - 1)];
 
@@ -20,6 +23,9 @@ const display = () => {
   } else {
     status.innerHTML = "-- select block --";
   }
+
+  counterDashboard.innerText = counter;
+
 }
 
 function clearBoard(tower) {
@@ -37,6 +43,7 @@ function startGame() {
   clearBoard(tower2);
   clearBoard(tower3);
   currentPiece = null;
+  counter = 0;
 
   var numOfBlocksSelected = blockSelect.options[blockSelect.selectedIndex].value;
 
@@ -58,6 +65,7 @@ function startGame() {
     } else if (currentPiece && tower.childNodes.length === 0) {
 
       tower.appendChild(currentPiece);
+      counter++;
       currentPiece = null;
     } else if (currentPiece) {
 
@@ -66,13 +74,14 @@ function startGame() {
 
       if (currentPieceWidth <= topPieceWidth) {
         tower.appendChild(currentPiece);
+        counter++;
         currentPiece = null;
       }
     }
     display();
 
     if (didPlayerWin()) {
-      setTimeout(() => alert("Congrats, you win!"), 500);
+      setTimeout(() => alert(`Congrats, you win level:${numOfBlocksSelected} in ${counter} moves!`), 500);
     }
   }
 

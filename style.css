@@ -5,6 +5,10 @@ body {
   font-family: 'Quattrocento Sans', sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 header {
   text-align: center;
   font-family: 'Quattrocento Sans', sans-serif;
@@ -115,4 +119,8 @@ body {
 
 .detail_col_three {
   visibility: hidden;
+}
+
+footer {
+  font-size: 1.2rem;
 }

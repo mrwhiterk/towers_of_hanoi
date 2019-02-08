@@ -85,8 +85,22 @@ body {
   margin: 10px;
   padding: 10px;
   background-color: orange;
+  border-radius: 10px;
+  border: none;
+  font-size: 1.2rem;
 }
+
+#startBtn:hover {
+  background-color: rgb(250, 191, 80);
+}
+
+
 
 #blockSelect {
   transform: scale(1.5);
+}
+
+#status {
+  display: inline-block;
+  width: 200px;
 }

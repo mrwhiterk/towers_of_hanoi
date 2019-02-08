@@ -1,12 +1,26 @@
+/* font-family: 'Orbitron', sans-serif;
+font-family: 'Quattrocento Sans', sans-serif; */
+
+body {
+  font-family: 'Quattrocento Sans', sans-serif;
+}
+
 header {
   text-align: center;
+  font-family: 'Quattrocento Sans', sans-serif;
+  font-size: 1.2rem;
+  /* font-family: 'Orbitron', sans-serif; */
 
 }
 
 header h1 {
-  font-family: 'Anton', sans-serif;
-  font-size: 2rem;
+  /* font-family: 'Anton', sans-serif; */
+  font-family: 'Orbitron', sans-serif;
+
+  font-size: 2.3rem;
 }
+
+
 
 body {
   text-align: center;
@@ -46,10 +60,12 @@ body {
   display: flex;
   flex-direction: column;
   background-color: white;
-  display: inline-block;
-  width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 900px;
   padding: 5px;
-  margin: 5px;
+  margin: 5px auto;
 
 }
 

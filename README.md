@@ -14,3 +14,7 @@ The objective of the game is to move all the blocks from the left most column to
 # Approach to Creation
 
 In my game area, I use 3 divs inside a css grid container. I also have a flexbox on each container to column-reverse so newly appended divs goes to the top(ie: tower piece). Then I wrote functionality to pull a current elem and push or pop based on the size or presence of the underlying elem.
+
+# Technology used
+
+HTML, CSS, Vanilla Javascript

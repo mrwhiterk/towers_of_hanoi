@@ -1,8 +1,5 @@
-/* font-family: 'Orbitron', sans-serif;
-font-family: 'Quattrocento Sans', sans-serif; */
-
 body {
-  font-family: 'Quattrocento Sans', sans-serif;
+  font-family: "Quattrocento Sans", sans-serif;
   transform: scale(0.8);
   margin-top: -40px;
 }
@@ -13,12 +10,12 @@ a {
 
 header {
   text-align: center;
-  font-family: 'Quattrocento Sans', sans-serif;
+  font-family: "Quattrocento Sans", sans-serif;
   font-size: 1.2rem;
 }
 
 header h1 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 2.3rem;
 }
 
@@ -27,12 +24,10 @@ header p {
   margin: 5px auto;
 }
 
-
 body {
   text-align: center;
   background-color: orange;
 }
-
 
 .grid {
   width: 900px;
@@ -41,10 +36,9 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   visibility: hidden;
-
 }
 
-.grid>div {
+.grid > div {
   background-color: rgb(242, 242, 242);
   min-width: 30%;
   height: 420px;
@@ -60,7 +54,6 @@ body {
   margin: 0 auto;
   background-color: brown;
   pointer-events: none;
-  /* background-image: url("assets/stone_wall.jpg"); */
 }
 
 .details {
@@ -76,7 +69,6 @@ body {
   margin: 5px auto;
   border-radius: 10px;
   font-size: 1.2rem;
-
 }
 
 .label {
@@ -103,12 +95,9 @@ body {
   background-color: rgb(250, 191, 80);
 }
 
-
-
 #blockSelect {
   font-size: 1.2rem;
   display: inline-block;
-
 }
 
 #status {

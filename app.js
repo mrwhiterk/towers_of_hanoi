@@ -7,10 +7,10 @@ const startBtn = document.querySelector("#startBtn");
 let blockSelect = document.querySelector("#blockSelect");
 const boxWidth = 120;
 let currentPiece;
-var counter = 0;
-var counterDashboard = document.querySelector('.counter');
-var detail_col_two = document.querySelector('.detail_col_two');
-var detail_col_three = document.querySelector('.detail_col_three');
+let counter = 0;
+let counterDashboard = document.querySelector('.counter');
+let detail_col_two = document.querySelector('.detail_col_two');
+let detail_col_three = document.querySelector('.detail_col_three');
 
 
 const getLastItem = list => list.childNodes[(list.childNodes.length - 1)];
@@ -36,7 +36,7 @@ function clearBoard(tower) {
   }
 }
 
-var numOfBlocks = blockSelect.options[blockSelect.selectedIndex].value;
+let numOfBlocks = blockSelect.options[blockSelect.selectedIndex].value;
 
 startBtn.addEventListener('click', () => startGame());
 
@@ -61,9 +61,8 @@ function startGame() {
   counter = 0;
   display()
 
-  var numOfBlocksSelected = blockSelect.options[blockSelect.selectedIndex].value;
+  let numOfBlocksSelected = blockSelect.options[blockSelect.selectedIndex].value;
 
-  // create 3 blocks
   for (let i = numOfBlocksSelected; i > 0; i--) {
     let block = document.createElement('div');
     block.className = "block";
@@ -85,8 +84,8 @@ function startGame() {
       currentPiece = null;
     } else if (currentPiece) {
 
-      var currentPieceWidth = parseInt(currentPiece.style.width);
-      var topPieceWidth = parseInt(getLastItem(tower).style.width);
+      let currentPieceWidth = parseInt(currentPiece.style.width);
+      let topPieceWidth = parseInt(getLastItem(tower).style.width);
 
       if (currentPieceWidth <= topPieceWidth) {
         tower.appendChild(currentPiece);

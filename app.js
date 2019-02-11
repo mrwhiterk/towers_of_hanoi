@@ -38,7 +38,7 @@ function clearBoard(tower) {
 
 let numOfBlocks = blockSelect.options[blockSelect.selectedIndex].value;
 
-startBtn.addEventListener('click', () => startGame());
+startBtn.addEventListener('click', startGame);
 
 function startGame() {
   grid.style.visibility = "visible";
